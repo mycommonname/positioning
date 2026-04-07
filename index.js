@@ -1,28 +1,35 @@
-/*
-    Изменить элементу цвет и ширину можно вот так:
+const modal = document.querySelector('#modal');
+const openBtn = document.querySelector('#open-modal-btn');
+const closeBtn = document.querySelector('#close-modal-btn');
+const progressFill = document.querySelector('#progress-fill');
 
-    const element = document.querySelector('.myElement');
-    element.style.color = 'red';
-    element.style.width = '300px';
-*/
+let animationInterval;
 
-function move() {
-    let elem = document.querySelector(".progress-bar1");
-    let width = 0;
-    let id = setInterval(frame, 33);
-    function frame() {
-        if (width >= 100) {
-            clearInterval(id);
+// Открытие модального окна
+openBtn.onclick = function() {
+    modal.style.display = 'flex';
+    startAnimation();
+};
+
+closeBtn.onclick = function() {
+    modal.style.display = 'none';
+    clearInterval(animationInterval);
+};
+
+function startAnimation() {
+    progressFill.style.width = '0%';
+    let currentWidth = 0;
+
+    clearInterval(animationInterval);
+
+
+    animationInterval = setInterval(function() {
+        if (currentWidth >= 100) {
+            clearInterval(animationInterval);
+            progressFill.style.width = '100%';
+        } else {
+            currentWidth += 0.5;
+            progressFill.style.width = currentWidth + '%';
         }
-        else {
-            width++;
-            elem.style.width = width + "%";
-        }
-        elem.style['clipPath'] = `inset(0 ${100-width}% 0 0`
-    }
-}
-
-document.querySelector('.modal_window_close').onclick = function () {
-    document.querySelector('.modal_window').style.display = 'none';
-    document.querySelector('.modal_window').style.display = 'none';
+    }, 15);
 }
