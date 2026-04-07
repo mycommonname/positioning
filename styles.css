@@ -91,3 +91,56 @@ body {
 .red { width: 100px; height: 100px; background-color: red; }
 .white { width: 60px; height: 60px; background-color: white; }
 .red-inner { width: 30px; height: 30px; background-color: red; border-radius: 50%; }
+
+.accordion {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #ccc;
+}
+
+.accordion-input {
+    display: none;
+}
+
+.accordion-label {
+    display: block;
+    padding: 15px;
+    background: #eef5ff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.accordion-label:hover {
+    background: #e0eaff;
+}
+
+.accordion-label::before {
+    content: '+';
+    margin-right: 10px;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background: white;
+}
+
+.accordion-content p {
+    padding: 15px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.accordion-input:checked ~ .accordion-content {
+    max-height: 200px;
+}
+
+.accordion-input:checked ~ .accordion-label::before {
+    content: '−';
+}
