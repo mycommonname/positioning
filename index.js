@@ -5,7 +5,6 @@ const progressFill = document.querySelector('#progress-fill');
 
 let animationInterval;
 
-// Открытие модального окна
 openBtn.onclick = function() {
     modal.style.display = 'flex';
     startAnimation();
